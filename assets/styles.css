@@ -76,3 +76,12 @@ form {
 #scoreSubmit {
   padding: 8px;
 }
+
+#returnButton {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  margin-top: 300px;
+  display: block;
+}

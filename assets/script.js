@@ -16,6 +16,7 @@ function startTimer() {
     if (time == 0) {
       alert("YOU LOSE!");
       clearInterval(timer);
+      quizEnd();
     }
   }, 1000);
 }
