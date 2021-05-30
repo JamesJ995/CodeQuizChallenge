@@ -14,6 +14,7 @@
   background-color: purple;
   border: none;
   color: white;
+  margin: 5px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -61,4 +62,17 @@
   background-color: purple;
   box-shadow: 0 5px rgba(0, 0, 0, 0.19);
   transform: translateY(4px);
+}
+
+#feedback {
+  text-align: center;
+  font-weight: bolder;
+}
+
+form {
+  margin: 10px;
+}
+
+#scoreSubmit {
+  padding: 8px;
 }

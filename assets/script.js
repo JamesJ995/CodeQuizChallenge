@@ -4,6 +4,8 @@ var startButton = document.getElementById("startButton");
 var contentEl = document.getElementById("content");
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answerText");
+var feedbackEl = document.getElementById("feedback");
+var feedbackText = document.createElement("paragraph");
 var time = 45;
 var qIndex = 0;
 
@@ -19,6 +21,10 @@ function startTimer() {
 }
 
 function renderQuestion() {
+  if (qIndex >= 3) {
+    quizEnd();
+    return;
+  }
   questionEl.textContent = "";
   answerEl.textContent = "";
   startButton.remove();
@@ -30,18 +36,32 @@ function renderQuestion() {
     qBtn[i].textContent = questionsArray[qIndex].options[i];
     answerEl.appendChild(qBtn[i]);
   }
-  answerEl.addEventListener("click", function (event) {
-    if (
-      event.target.textContent.toLowerCase ===
-      questionsArray[qIndex].answer.toLowerCase
-    ) {
-      alert("Correct!");
-      renderQuestion();
-    }
-  });
 }
+
+function quizEnd() {
+  clearInterval(timer);
+  localStorage.setItem("score", time);
+  window.location.href = "scorePage.html";
+}
+
+answerEl.addEventListener("click", function (event) {
+  console.log(event.target.textContent);
+  if (event.target.textContent === questionsArray[qIndex].answer) {
+    feedbackText.textContent = "";
+    feedbackText.textContent = "Correct!!";
+    feedbackEl.appendChild(feedbackText);
+    qIndex++;
+    renderQuestion();
+  } else {
+    feedbackText.textContent = "";
+    feedbackText.textContent = "Incorrect";
+    feedbackEl.appendChild(feedbackText);
+    time = time - 2;
+    console.log(time);
+  }
+});
 
 startButton.addEventListener("click", function () {
   renderQuestion();
-  //startTimer();
+  startTimer();
 });
